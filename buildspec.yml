@@ -1,0 +1,32 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      # Install dependencies here
+      - echo Installing dependencies
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      # Run tests here
+      - echo Running tests
+      - pytest tests/
+  build:
+    commands:
+      # Build your application here
+      - echo Build started on `date`
+      - echo Building the web application
+      # For example, if you're using a static site generator:
+      - python build.py
+  post_build:
+    commands:
+      # Post-build actions here, like notifications, or tagging an image
+      - echo Build completed on `date`
+
+artifacts:
+  files:
+    # List all files that you want to include in the build artifact here
+    - '**/*'
+  base-directory: 'build/' # The directory where your built assets are located
